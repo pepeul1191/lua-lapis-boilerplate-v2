@@ -11,12 +11,15 @@ end)
 local login = require('routes._login')
 local error = require('routes._error')
 local home = require('routes._home')
+local ubicaciones_departamento = require('routes.ubicaciones_departamento')
 -- rutas
 -- login
 app:match('loginIndex', '/login', respond_to(login.Index(self)))
 app:match('loginAcceder', '/login/acceder', respond_to(login.Acceder(self)))
 app:match('loginSalir', '/login/cerrar', respond_to(login.Salir(self)))
 app:match('loginVer', '/login/ver', respond_to(login.Ver(self)))
+-- ubicaciones
+app:match('departamentoListar', '/departamento/listar', respond_to(ubicaciones_departamento.Listar(self)))
 -- homepage
 app:match('homeIndex', '/', respond_to(home.Index(self)))
 -- default
