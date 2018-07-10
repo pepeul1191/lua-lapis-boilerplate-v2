@@ -4,7 +4,7 @@ local inspect = require('inspect')
 local json = require('cjson')
 local constants = require('configs.constants')
 local helpers = require('configs.helpers')
-local error_helper = require('helpers.error_helper')
+local error_helper = require('helpers._error_helper')
 
 local function NotFound(self)
   return {

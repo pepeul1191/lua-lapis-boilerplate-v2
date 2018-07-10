@@ -1,4 +1,4 @@
-# Lua Lapis Front Animales
+# Lua Lapis Front Boilerplate
 
 Instalación de dependencias:
 

@@ -8,9 +8,9 @@ app:get('/test/conexion', function(self)
 end)
 
 -- importaciones de rutas
-local login = require('routes.login')
-local error = require('routes.error')
-local home = require('routes.home')
+local login = require('routes._login')
+local error = require('routes._error')
+local home = require('routes._home')
 -- rutas
 -- login
 app:match('loginIndex', '/login', respond_to(login.Index(self)))
