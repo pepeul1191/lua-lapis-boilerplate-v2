@@ -51,11 +51,11 @@ local function Acceder(self)
               mensaje = 'Usuario y/o contraseña no válidos'
             end
           elseif resp2['status'] == 500 then
-            mensaje = resp2['mensaje'][1]
+            mensaje = resp2['mensaje'][1] .. ', ' .. resp1['mensaje'][2]
           end
         end
       elseif resp1['status'] == 500 then
-        mensaje = resp1['mensaje'][1]
+        mensaje = resp1['mensaje'][1] .. ', ' .. resp1['mensaje'][2]
       end
       self.constants = constants
       self.helpers = helpers

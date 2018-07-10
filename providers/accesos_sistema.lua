@@ -38,10 +38,10 @@ local function ValidarUsuario(usuario)
       status = 200
     }
   elseif code == 500 then
-    rpta = response
+    rpta = json.decode(response)
     rpta['status'] = 500
   else
-    rpta = response
+    rpta = json.decode(response)
     rpta['status'] = 404
   end
   return rpta
