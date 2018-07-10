@@ -9,7 +9,12 @@ end)
 
 -- importaciones de rutas
 local login = require('routes.login')
+local error = require('routes.error')
 -- rutas
+-- login
 app:match('loginIndex', '/login', respond_to(login.Index(self)))
+-- default
+app:match('errorAccess', '/error/access/:error', respond_to(error.Access(self)))
+app:match('handle_404', respond_to(error.NotFound(self)))
 
 return app
