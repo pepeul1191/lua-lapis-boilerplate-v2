@@ -1,0 +1,36 @@
+{
+  "name": "html-redmine",
+  "homepage": "softweb.pe",
+  "authors": [
+    "Pepe Valdivia <jvaldivia@softweb.pe>"
+  ],
+  "description": "Dashboard HTML Bootstrap like Redmine",
+  "main": "",
+  "keywords": [
+    "Bootstrap",
+    "Redmine",
+    "Plugins",
+    "Jquery",
+    "Mootools"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "qunit": "^2.1.1",
+    "backbone": "^1.3.3",
+    "handlebars": "^4.0.10",
+    "backbone.marionette": "marionette#^3.4.0",
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "requirejs": "^2.3.4",
+    "swp-plugins": "*"
+  }
+}
