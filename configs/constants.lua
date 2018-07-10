@@ -1,7 +1,7 @@
 local M = {}
 
-M.BASE_URL = 'http://localhost:9090/'
-M.STATIC_URL = 'http://localhost:9090/static/'
+M.BASE_URL = 'http://localhost:8080/'
+M.STATIC_URL = 'http://localhost:8080/static/'
 M.SISTEMA_ID = '4'
 M.CSRF = {
   key = 'csrf-key',
