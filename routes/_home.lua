@@ -19,22 +19,10 @@ local function Index(self)
       self.csss = home_helper.IndexCSS()
       self.jss = home_helper.IndexJS()
       self.title = 'Home'
-      self.modulos = json.encode({
-        {url = "accesos/", nombre = "Accesos"},
-        {url = "administracion/", nombre = "Administración"},
-      })
-      self.items =  json.encode({
-        {subtitulo = "Opciones", items =
-    			{
-            {item = "Gestión de Eventos", url = "administracion#/evento"},
-            {item = "Gestión de Alumnos", url = "administracion#/alumno"},
-    				{item = "Gestión de Empleados", url = "administracion#/empleado"},
-    				{item = "Gestión de Externos", url = "administracion#/externo"},
-    			}
-    		},
-      })
+      self.modulos = helpers.LoadModulos()
+      self.items =  helpers.LoadItems('Accesos')
       self.data = json.encode({
-        modulo = "Accesos"
+        modulo = 'Accesos'
       })
       return { render = 'home.index', layout = 'layouts.app'}
     end

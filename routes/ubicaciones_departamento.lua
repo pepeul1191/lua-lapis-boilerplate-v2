@@ -5,7 +5,7 @@ local constants = require('configs.constants')
 local middleware = require('configs.middleware')
 local inspect = require('inspect')
 local json = require('cjson')
-local ubicaciones_departamento = require('providers.ubicaciones_departamento')
+local ubicaciones_departamento = require('providers.ubicaciones_departamento_provider')
 
 local function Listar(self)
   return {
