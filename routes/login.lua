@@ -68,6 +68,33 @@ local function Acceder(self)
   }
 end
 
+local function Ver(self)
+  return {
+    before = function(self)
+      --
+    end,
+    GET = function(self)
+      --self:headers
+      --local req = accesos_usuario.client:listar{}
+      --return req.body
+      return { json = { usuario = self.session.usuario, tiempo = self.session.tiempo, estado = self.session.estado } }
+    end
+  }
+end
+
+local function Salir(self)
+  return {
+    GET = function(self)
+      self.session.estado = nil
+      self.session.tiempo = nil
+      self.session.usuario = nil
+      self:write({redirect_to = self:url_for('loginIndex')})
+    end
+  }
+end
+
 M.Index = Index
 M.Acceder = Acceder
+M.Ver = Ver
+M.Salir = Salir
 return M
