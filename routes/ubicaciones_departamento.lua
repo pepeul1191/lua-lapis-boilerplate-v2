@@ -10,7 +10,7 @@ local ubicaciones_departamento = require('providers.ubicaciones_departamento')
 local function Listar(self)
   return {
     before = function(self)
-      --middleware.ValidarCSRF(self)
+      middleware.CSRFHeader(self)
     end,
     GET = function(self)
       local resp = ubicaciones_departamento.DepartamentoListar()

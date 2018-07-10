@@ -27,7 +27,7 @@ local function DepartamentoListar()
       tipo_mensaje = 'error',
       mensaje = {
         'No se puede acceder al servicio de ubicaciones para el listado de departamentos' ,
-        'Servidor de accesos de disponible'
+        'Servidor de ubicaciones no disponible'
       },
       status = 500
     }

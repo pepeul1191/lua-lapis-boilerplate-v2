@@ -27,7 +27,7 @@ local function ValidarUsuario(usuario)
       tipo_mensaje = 'error',
       mensaje = {
         'No se puede acceder al servicio de validación de usuario/sistema' ,
-        'Servidor de accesos de disponible'
+        'Servidor de accesos no disponible'
       },
       status = 500
     }
