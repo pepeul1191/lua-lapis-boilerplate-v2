@@ -5,8 +5,7 @@ local constants = require('configs.constants')
 local helpers = require('configs.helpers')
 local home_helper = require('helpers._home_helper')
 local middleware = require('configs.middleware')
---local accesos_usuario = require('providers.accesos_usuario')
---local accesos_sistema = require('providers.accesos_sistema')
+local json = require('cjson')
 -- local inspect = require('inspect')
 
 local function Index(self)
@@ -20,8 +19,24 @@ local function Index(self)
       self.csss = home_helper.IndexCSS()
       self.jss = home_helper.IndexJS()
       self.title = 'Home'
-      self.mensaje = ''
-      return { render = 'home.index', layout = 'layouts.blank'}
+      self.modulos = json.encode({
+        {url = "accesos/", nombre = "Accesos"},
+        {url = "administracion/", nombre = "Administración"},
+      })
+      self.items =  json.encode({
+        {subtitulo = "Opciones", items =
+    			{
+            {item = "Gestión de Eventos", url = "administracion#/evento"},
+            {item = "Gestión de Alumnos", url = "administracion#/alumno"},
+    				{item = "Gestión de Empleados", url = "administracion#/empleado"},
+    				{item = "Gestión de Externos", url = "administracion#/externo"},
+    			}
+    		},
+      })
+      self.data = json.encode({
+        modulo = "Accesos"
+      })
+      return { render = 'home.index', layout = 'layouts.app'}
     end
   }
 end
