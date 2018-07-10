@@ -15,5 +15,6 @@ M.SERVICIOS = {
   },
 }
 M.AMBIENTE_STATIC = 'desarrollo'
+M.AMBIENTE_SESSION = 'activo'
 
 return M

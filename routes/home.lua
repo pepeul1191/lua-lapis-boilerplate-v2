@@ -3,7 +3,7 @@ local config = require('lapis.config')
 local inspect = require('inspect')
 local constants = require('configs.constants')
 local helpers = require('configs.helpers')
-local login_helper = require('helpers.login_helper')
+local home_helper = require('helpers.home_helper')
 local middleware = require('configs.middleware')
 --local accesos_usuario = require('providers.accesos_usuario')
 --local accesos_sistema = require('providers.accesos_sistema')
@@ -12,16 +12,16 @@ local middleware = require('configs.middleware')
 local function Index(self)
   return {
     before = function(self)
-      middleware.ViewSessionFalse(self)
+      middleware.ViewSessionTrue(self)
     end,
     GET = function(self)
       self.constants = constants
       self.helpers = helpers
-      self.csss = login_helper.IndexCSS()
-      self.jss = login_helper.IndexJS()
-      self.title = 'Login'
+      self.csss = home_helper.IndexCSS()
+      self.jss = home_helper.IndexJS()
+      self.title = 'Home'
       self.mensaje = ''
-      return { render = 'login.index', layout = 'layouts.blank'}
+      return { render = 'home.index', layout = 'layouts.blank'}
     end
   }
 end
