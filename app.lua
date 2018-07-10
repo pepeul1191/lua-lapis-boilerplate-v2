@@ -14,6 +14,7 @@ local home = require('routes.home')
 -- rutas
 -- login
 app:match('loginIndex', '/login', respond_to(login.Index(self)))
+app:match('loginAcceder', '/login/acceder', respond_to(login.Acceder(self)))
 -- homepage
 app:match('homeIndex', '/', respond_to(home.Index(self)))
 -- default

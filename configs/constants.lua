@@ -9,7 +9,7 @@ M.CSRF = {
 }
 M.SERVICIOS = {
   accesos = {
-    url = 'http://localhost:5000/',
+    url = 'http://localhost:4000/',
     csrf_key = 'csrf_val',
     csrf_value = 'PKBcauXg6sTXz7Ddlty0nejVgoUodXL89KNxcrfwkEme0Huqtj6jjt4fP7v2uF4L',
   },

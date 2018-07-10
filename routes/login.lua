@@ -6,8 +6,8 @@ local helpers = require('configs.helpers')
 local login_helper = require('helpers.login_helper')
 local middleware = require('configs.middleware')
 --local accesos_usuario = require('providers.accesos_usuario')
---local accesos_sistema = require('providers.accesos_sistema')
--- local inspect = require('inspect')
+local accesos_sistema = require('providers.accesos_sistema')
+local inspect = require('inspect')
 
 local function Index(self)
   return {
@@ -26,5 +26,36 @@ local function Index(self)
   }
 end
 
+local function Acceder(self)
+  return {
+    before = function(self)
+      --middleware.ValidarCSRF(self)
+    end,
+    POST = function(self)
+      usuario = self.params['usuario']
+      contrasenia = self.params['contrasenia']
+      mensaje = ''
+      local resp1 = accesos_sistema.ValidarUsuario(usuario)
+      if resp1['status'] == 200 then
+        if resp1['mensaje'] == 0 then
+          mensaje = 'Usuario no se encuentra registrado en el sistema'
+        else
+          local resp2 = accesos_sistema.ValidarUsuario(usuario)
+        end
+      elseif resp1['status'] == 500 then
+        mensaje = resp1['mensaje'][1]
+      end
+      self.constants = constants
+      self.helpers = helpers
+      self.csss = login_helper.IndexCSS()
+      self.jss = login_helper.IndexJS()
+      self.title = 'Login'
+      self.mensaje = mensaje--'Usuario y/o contraseña no válidos'
+      return { render = 'login.index', layout = 'layouts.blank', status = 500}
+    end
+  }
+end
+
 M.Index = Index
+M.Acceder = Acceder
 return M
