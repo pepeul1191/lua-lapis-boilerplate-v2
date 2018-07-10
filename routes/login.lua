@@ -5,7 +5,7 @@ local constants = require('configs.constants')
 local helpers = require('configs.helpers')
 local login_helper = require('helpers.login_helper')
 local middleware = require('configs.middleware')
---local accesos_usuario = require('providers.accesos_usuario')
+local accesos_usuario = require('providers.accesos_usuario')
 local accesos_sistema = require('providers.accesos_sistema')
 local inspect = require('inspect')
 
@@ -40,7 +40,19 @@ local function Acceder(self)
         if resp1['mensaje'] == 0 then
           mensaje = 'Usuario no se encuentra registrado en el sistema'
         else
-          local resp2 = accesos_sistema.ValidarUsuario(usuario)
+          local resp2 = accesos_usuario.ValidarUsuarioREST(usuario, contrasenia)
+          if resp2['status'] == 200 then
+            if resp2['mensaje'] == 1 then
+              self.session.estado = 'activo'
+      				self.session.tiempo = os.date('*t')
+      				self.session.usuario = self.params['usuario']
+              return self:write({redirect_to = constants.BASE_URL})
+            else
+              mensaje = 'Usuario y/o contraseña no válidos'
+            end
+          elseif resp2['status'] == 500 then
+            mensaje = resp2['mensaje'][1]
+          end
         end
       elseif resp1['status'] == 500 then
         mensaje = resp1['mensaje'][1]
@@ -50,7 +62,7 @@ local function Acceder(self)
       self.csss = login_helper.IndexCSS()
       self.jss = login_helper.IndexJS()
       self.title = 'Login'
-      self.mensaje = mensaje--'Usuario y/o contraseña no válidos'
+      self.mensaje = mensaje
       return { render = 'login.index', layout = 'layouts.blank', status = 500}
     end
   }
